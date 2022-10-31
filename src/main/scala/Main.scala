@@ -1,5 +1,11 @@
-object Main {
-  def main(args: Array[String]): Unit = {
-    println("Hello world!")
+object Main extends App {
+
+  def thread(body: => Unit): Thread = {
+    val t = new Thread {
+      override def run() = body
+    }
+    t.start
+    t
   }
+
 }
