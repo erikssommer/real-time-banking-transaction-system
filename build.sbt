@@ -1,8 +1,5 @@
-ThisBuild / version := "0.1.0-SNAPSHOT"
+libraryDependencies += "org.scalatest" %% "scalatest" % "3.0.0" % "test"
 
-ThisBuild / scalaVersion := "2.13.10"
+resolvers += "Central" at "https://central.maven.org/maven2/"
 
-lazy val root = (project in file("."))
-  .settings(
-    name := "real-time-banking-transaction-system"
-  )
+scalacOptions := Seq("-unchecked", "-deprecation", "-feature", "-language:postfixOps")
