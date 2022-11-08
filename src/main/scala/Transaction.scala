@@ -7,7 +7,6 @@ object TransactionStatus extends Enumeration {
 
 class TransactionQueue {
 
-    // TODO
     // project task 1.1
     // Add datastructure to contain the transactions
     private val _transactions = mutable.Queue[Transaction]()
@@ -61,7 +60,6 @@ class Transaction(val transactionsQueue: TransactionQueue,
     override def run(): Unit = {
 
         def doTransaction(): Unit = {
-            // TODO - project task 3
             // Extend this method to satisfy requirements.
             if (from withdraw amount isLeft) {
                 if (to deposit amount isLeft) {
@@ -82,7 +80,6 @@ class Transaction(val transactionsQueue: TransactionQueue,
             }
         }
 
-        // TODO - project task 3
         // make the code below thread safe
         if (status == TransactionStatus.PENDING) {
             doTransaction()
