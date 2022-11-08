@@ -66,12 +66,14 @@ class Transaction(val transactionsQueue: TransactionQueue,
     override def run(): Unit = {
 
         def doTransaction(): Unit = {
-            // Extend this method to satisfy requirements.
+            // test if the transaction is valid
             if (from withdraw amount isLeft) {
+                // if valid, execute the transaction
                 if (to deposit amount isLeft) {
                     status = TransactionStatus.SUCCESS
                 }
                 else {
+                    // if the deposit fails, roll back the withdrawal
                     from deposit amount
                     incrementAttempt()
                     if (attempt == allowedAttemps) {
@@ -79,6 +81,7 @@ class Transaction(val transactionsQueue: TransactionQueue,
                     }
                 }
             } else {
+                // transaction failed
                 incrementAttempt()
                 if (attempt == allowedAttemps) {
                     status = TransactionStatus.FAILED
