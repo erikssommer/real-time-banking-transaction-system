@@ -81,7 +81,7 @@ class Transaction(val transactionsQueue: TransactionQueue,
                     }
                 }
             } else {
-                // transaction failed
+                // transaction failed. Increment attempt and check if it is allowed
                 incrementAttempt()
                 if (attempt == allowedAttemps) {
                     status = TransactionStatus.FAILED
