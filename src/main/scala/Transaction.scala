@@ -5,6 +5,8 @@ object TransactionStatus extends Enumeration {
     val SUCCESS, PENDING, FAILED = Value
 }
 
+// Datastructure to hold transactions.
+// Functions of TransactionQueue are implemented in a thread-safe manner.
 class TransactionQueue {
 
     // project task 1.1

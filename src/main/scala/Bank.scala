@@ -11,6 +11,7 @@ class Bank(val allowedAttempts: Integer = 3) {
     def addTransactionToQueue(from: Account, to: Account, amount: Double): Unit = {
         val transaction = new Transaction(transactionsQueue, processedTransactions, from, to, amount, allowedAttempts)
         transactionsQueue.push(transaction)
+        // start processing transactions concurrently.
         val thread = new Thread {
             override def run(): Unit = processTransactions()
         }
@@ -27,6 +28,7 @@ class Bank(val allowedAttempts: Integer = 3) {
     private def processTransactions(): Unit = {
         val transaction = transactionsQueue.pop
         transaction.run()
+        // If a transactions’ status is pending, push it back to the queue and recursively call processTransactions
         if (transaction synchronized {
             transaction.status == TransactionStatus.PENDING
         }) {
