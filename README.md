@@ -1,4 +1,4 @@
-# real-time-banking-transaction-system
+# Real Time Banking-Transaction-System
 
 ## Description
 Traditional online banking applications are currently experiencing great competition from new players in the market who are offering direct transactions with a few seconds of response time. Banks are therefore looking at possibilities of changing their traditional method which involves batch transactions at given times of the day with hours in between.
