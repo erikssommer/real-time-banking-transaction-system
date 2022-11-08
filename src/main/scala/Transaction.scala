@@ -57,6 +57,10 @@ class Transaction(val transactionsQueue: TransactionQueue,
     var status: TransactionStatus.Value = TransactionStatus.PENDING
     var attempt = 0
 
+    def incrementAttempt(): Unit = {
+        attempt += 1
+    }
+
     override def run(): Unit = {
 
         def doTransaction(): Unit = {
@@ -67,13 +71,13 @@ class Transaction(val transactionsQueue: TransactionQueue,
                 }
                 else {
                     from deposit amount
-                    attempt += 1
+                    incrementAttempt()
                     if (attempt == allowedAttemps) {
                         status = TransactionStatus.FAILED
                     }
                 }
             } else {
-                attempt += 1
+                incrementAttempt()
                 if (attempt == allowedAttemps) {
                     status = TransactionStatus.FAILED
                 }
